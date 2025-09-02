@@ -1,6 +1,8 @@
 package com.sky.controller.admin;
 
 import com.sky.annotation.Log;
+import com.sky.constant.MessageConstant;
+import com.sky.exception.BaseException;
 import com.sky.result.Result;
 import com.sky.utils.AliOssUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -36,9 +38,7 @@ public class CommonController {
             return Result.success(filename);
         } catch (Exception exception) {
             log.error("文件上传失败");
+            throw new BaseException(MessageConstant.UPLOAD_FAILED);
         }
-        return null;
     }
-
-
 }
