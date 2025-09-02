@@ -4,3 +4,5 @@
 *.class
 *Test.java
 **/test/
+AccessKey.csv
+sky-server/src/main/resources/application-dev.yml
