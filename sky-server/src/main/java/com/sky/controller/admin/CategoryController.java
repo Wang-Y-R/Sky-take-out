@@ -1,13 +1,14 @@
 package com.sky.controller.admin;
 
-import com.github.pagehelper.Page;
+import com.sky.annotation.Log;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
+import com.sky.dto.DishDTO;
 import com.sky.entity.Category;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CategoryService;
-import com.sky.service.EmployeeService;
+import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,43 +24,44 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/page")
+    @Log("分类分页查询")
     public Result<PageResult> pageSearch(CategoryPageQueryDTO categoryPageQueryDTO) {
-        log.info("分类分页查询");
         PageResult pageResult = categoryService.pageSearch(categoryPageQueryDTO);
         return Result.success(pageResult);
     }
 
     @PutMapping()
+    @Log("分类修改")
     public Result<String> update(@RequestBody CategoryDTO categoryDTO) {
-        log.info("分类修改");
         categoryService.update(categoryDTO);
         return Result.success();
     }
 
     @PostMapping("/status/{status}")
+    @Log("分类修改状态")
     public Result<String> updateStatus(@PathVariable Integer status,Long id) {
-        log.info("分类修改状态");
         categoryService.updateStatus(status,id);
         return Result.success();
     }
 
     @PostMapping()
+    @Log("分类添加")
     public Result<String> add(@RequestBody CategoryDTO categoryDTO) {
-        log.info("新增分类");
         categoryService.add(categoryDTO);
         return Result.success();
     }
 
     @DeleteMapping
+    @Log("分类删除")
     public Result<String> delete(Long id) {
-        log.info("删除分类");
         categoryService.delete(id);
         return Result.success();
     }
 
     @GetMapping("/list")
+    @Log("分类专类列表")
     public Result<List<Category>> list(Integer type) {
-        log.info("分类查询");
         return Result.success(categoryService.list(type));
     }
+
 }
