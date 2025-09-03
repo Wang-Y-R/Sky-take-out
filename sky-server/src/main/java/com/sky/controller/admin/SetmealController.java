@@ -42,14 +42,14 @@ public class SetmealController {
         return Result.success();
     }
 
-    @PutMapping("/status/{status}")
+    @PostMapping("/status/{status}")
     public Result<SetmealVO> updateStatus(@PathVariable Integer status,Long id) {
         setmealService.updateStatus(status,id);
         return Result.success();
     }
 
     @DeleteMapping()
-    public Result<String> delete(@PathVariable List<Long> ids) {
+    public Result<String> delete(@RequestParam List<Long> ids) {
         setmealService.delete(ids);
         return Result.success();
     }

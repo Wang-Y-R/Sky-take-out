@@ -4,9 +4,10 @@
 <mapper namespace="com.sky.mapper.SetmealDishMapper">
 
     <insert id="addPatch">
-        insert into setmeal_dish (setmeal_id, dish_id, name, price, copies) values
-        <foreach collection="setmealDishes" item="sd">
-            (#{sd.setmealId},#{dishId},#{name},#{price},#{copies})
+        insert into setmeal_dish (setmeal_id, dish_id, name, price, copies)
+        values
+        <foreach collection="setmealDishes" item="sd" separator=",">
+            (#{sd.setmealId}, #{sd.dishId}, #{sd.name}, #{sd.price}, #{sd.copies})
         </foreach>
     </insert>
 
