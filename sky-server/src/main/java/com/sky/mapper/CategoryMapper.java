@@ -37,7 +37,7 @@ public interface CategoryMapper {
             "values (#{type},#{name},#{sort},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})")
     void add(Category category);
 
-    @Select("select * from category where type = #{type}")
+//    @Select("select * from category where type = #{type}")
     List<Category> list(Integer type);
 
     @Delete("delete from category where id = #{id}")

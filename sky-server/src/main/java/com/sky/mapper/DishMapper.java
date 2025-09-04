@@ -39,4 +39,7 @@ public interface DishMapper {
 
     @Delete("delete from dish where id = #{id}")
     void deleteById(Long id);
+
+//    @Select("select * from dish where category_id = #{dish.categoryId} and status = ${dish.status}")
+    List<Dish> list(Dish dish);
 }
