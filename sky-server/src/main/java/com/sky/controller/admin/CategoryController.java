@@ -11,6 +11,8 @@ import com.sky.service.CategoryService;
 import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class CategoryController {
 
     @PutMapping()
     @Log("分类修改")
+    @CacheEvict(cacheNames = "categoryList",allEntries = true)
     public Result<String> update(@RequestBody CategoryDTO categoryDTO) {
         categoryService.update(categoryDTO);
         return Result.success();
@@ -39,6 +42,7 @@ public class CategoryController {
 
     @PostMapping("/status/{status}")
     @Log("分类修改状态")
+    @CacheEvict(cacheNames = "categoryList",allEntries = true)
     public Result<String> updateStatus(@PathVariable Integer status,Long id) {
         categoryService.updateStatus(status,id);
         return Result.success();
@@ -46,6 +50,7 @@ public class CategoryController {
 
     @PostMapping()
     @Log("分类添加")
+    @CacheEvict(cacheNames = "categoryList",allEntries = true)
     public Result<String> add(@RequestBody CategoryDTO categoryDTO) {
         categoryService.add(categoryDTO);
         return Result.success();
@@ -53,6 +58,7 @@ public class CategoryController {
 
     @DeleteMapping
     @Log("分类删除")
+    @CacheEvict(cacheNames = "categoryList",allEntries = true)
     public Result<String> delete(Long id) {
         categoryService.delete(id);
         return Result.success();
